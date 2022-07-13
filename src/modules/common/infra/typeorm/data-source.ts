@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm'
 import { config } from 'dotenv'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import { User } from '../../../authorization/users/entities/user.entity'
 
 config()
 const AppDataSource = new DataSource({
@@ -10,6 +11,7 @@ const AppDataSource = new DataSource({
   username: process.env.RDBMS_USERNAME,
   password: process.env.RDBMS_PASSWORD,
   database: process.env.RDBMS_DATABASE,
+  synchronize: process.env.RDBMS_SYNC === 'true',
   namingStrategy: new SnakeNamingStrategy(),
 })
 
