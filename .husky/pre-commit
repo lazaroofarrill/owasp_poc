@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn prettier -w .
+{
+  yarn prettier -w . >> /dev/null && echo "project formatted successfully"
+} || {
+  echo "error formatting project" && return 1
+}
 
 git add .
